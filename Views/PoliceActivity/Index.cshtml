@@ -1,0 +1,48 @@
+﻿@model List<PoliceActivityApp.Models.PoliceActivity>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Police Activities</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Summary</th>
+            <th>Location</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var activity in Model)
+        {
+            <tr>
+                <td>@activity.Name</td>
+                <td>@activity.Summary</td>
+                <td>@activity.Location.Name</td>
+                <td>@(activity.Datetime == DateTime.MinValue ? "Invalid Date" : activity.Datetime.ToString("g"))</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="map" style="height: 500px; width: 100%;"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var map = L.map('map').setView([57.2985, 13.54326], 6);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var activities = @Html.Raw(Json.Serialize(Model));
+        activities.forEach(function (activity) {
+            var coords = activity.location.gps.split(',');
+            var marker = L.marker([parseFloat(coords[0]), parseFloat(coords[1])]).addTo(map);
+            marker.bindPopup(`<b>${activity.name}</b><br>${activity.summary}`);
+        });
+    });
+</script>
