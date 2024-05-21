@@ -8,3 +8,4 @@
 /.vs/PoliceActivityApp
 appsettings.json
 appsettings.Development.json
+*.bin
