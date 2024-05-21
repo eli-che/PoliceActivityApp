@@ -2,7 +2,6 @@
 *.config
 *.dll
 *.pdb
-/wwwroot
 /obj
 /bin
 /.vs/PoliceActivityApp
@@ -10,3 +9,4 @@ appsettings.json
 appsettings.Development.json
 *.bin
 libman.json
+/wwwroot/lib
