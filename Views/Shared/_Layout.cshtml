@@ -4,19 +4,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - PoliceActivityApp</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 </head>
 <body>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
+    <div class="container-fluid">
+        <header class="d-flex justify-content-between align-items-center py-3 mb-4 border-bottom">
+            <div class="d-flex align-items-center mx-auto">
+                <!-- Image source from Pictures/bild.png -->
+                <img src="~/Pictures/Bild.png" alt="Bild" style="height: 150px;" />
+            </div>
+        </header>
+
+        <main role="main" class="row">
+            <div class="col-md-3">
+                @RenderSection("LeftSidebar", required: false)
+            </div>
+            <div class="col-md-6">
+                @RenderBody()
+            </div>
+            <div class="col-md-3">
+                @RenderSection("RightSidebar", required: false)
+                </div>
         </main>
     </div>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="~/lib/popper.js/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
