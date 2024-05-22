@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Police Activities</h1>
-
 @section LeftSidebar {
     <div class="sidebar-content">
     <div class="mb-4">
@@ -16,15 +14,13 @@
         <h5>Brottskategorier</h5>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="allCategories" checked>
-            <label class="form-check-label" for="allCategories">
-                Markera alla
-            </label>
+            <label class="form-check-label" for="allCategories">Markera alla</label>
         </div>
     </div>
 </div>
 }
 
-<div id="map" style="height: 900px; width: 100%;"></div>
+<div id="map" class="map-container"></div>
 
 @section RightSidebar {
     <div class="sidebar-content">

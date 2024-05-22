@@ -17,11 +17,13 @@ header {
 main {
     flex-grow: 1;
     display: flex;
-    overflow: hidden; 
+    overflow: hidden;
+    height: calc(100% - 150px);
 }
 
 .left-sidebar, .right-sidebar {
-    width: 20%; 
+    width: 20%;
+    height: 100%;
     overflow-y: auto;
     padding: 10px;
 }
