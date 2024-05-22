@@ -45,9 +45,29 @@ $(document).ready(function () {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
+
+
+        // Car crash png test
+        let customIcon = L.icon({
+            iconUrl: "/Pictures/car-crash.png",  
+            iconSize: [40, 40]
+        });
+
+        //icon url should be car-crash.png inside pictures folder
+
+
+
         events.forEach(function (event) {
             var coords = event.location.gps.split(',');
-            var marker = L.marker([parseFloat(coords[0]), parseFloat(coords[1])]).addTo(map);
+            //if event is "Trafikolycka" then use "car-crash.png" as icon"
+            if (event.type === "Trafikolycka") {
+                var marker = L.marker([parseFloat(coords[0]), parseFloat(coords[1])], {
+                    icon: customIcon
+                }).addTo(map);
+            }
+            else {
+                var marker = L.marker([parseFloat(coords[0]), parseFloat(coords[1])]).addTo(map);
+            }
             marker.bindPopup(`<b>${event.name}</b><br>${event.summary}`);
             marker.on('click', function () {
                 updateEventDetails(event);
