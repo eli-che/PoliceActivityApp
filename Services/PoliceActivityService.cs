@@ -26,5 +26,6 @@ namespace PoliceActivityApp.Services
             var response = await _httpClient.GetStringAsync("https://polisen.se/api/events");
             return JsonSerializer.Deserialize<List<PoliceActivity>>(response, options) ?? new List<PoliceActivity>();
         }
+
     }
 }

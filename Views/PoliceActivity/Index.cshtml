@@ -23,40 +23,30 @@
     </div>
 }
 
-<div id="map" style="height: 600px; width: 100%;"></div>
+<div id="map" style="height: 900px; width: 100%;"></div>
 
 @section RightSidebar {
-    <div>
+    <div id ="event-details">
         <h5>Trafikbrott i Norrbottens län</h5>
         <p>Information about selected event goes here...</p>
     </div>
     <div>
         <h5>SENASTE NYTT</h5>
         <ul class="list-group">
-            <!-- Latest news items go here -->
+
         </ul>
     </div>
 
 
-    <table class="table">
+    <table class="table" id="event-table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Summary</th>
-                <th>Location</th>
-                <th>Date</th>
+                <th>Händelse</th>
+                <th>Beskrivning</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var activity in Model)
-            {
-                <tr>
-                    <td>@activity.Name</td>
-                    <td>@activity.Summary</td>
-                    <td>@activity.Location.Name</td>
-                    <td>@(activity.Datetime == DateTime.MinValue ? "Invalid Date" : activity.Datetime.ToString("g"))</td>
-                </tr>
-            }
+
         </tbody>
     </table>
 }

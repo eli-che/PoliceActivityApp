@@ -23,11 +23,11 @@ $(document).ready(function () {
     });
 
     function fetchEventsByDate(date) {
-        var url = `https://polisen.se/api/events?DateTime=${date}`;
+        var url = `/PoliceActivity/GetEventsByDate?date=${date}`;
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                console.log('Data received:', data); // Debugging statement
+                console.log('Data received:', data);
                 updateMap(data);
                 updateSidebar(data);
             })
@@ -54,14 +54,28 @@ $(document).ready(function () {
 
     function updateSidebar(events) {
         var sidebar = $('.right-sidebar');
+        var sidebarDetails = $('#event-details');
+        var latestNews = $('#latest-news');
+        var eventTable = $('#event-table tbody');
         sidebar.empty();
+        sidebarDetails.empty();
+        latestNews.empty();
+        eventTable.empty();
+
+        sidebarDetails.append('<h5>PlaceHolder</h5>');
+        sidebarDetails.append('<p>PlaceHolder</p>');
+
         events.forEach(function (event) {
-            var eventItem = `<div>
-                <h5>${event.type} i ${event.location.name}</h5>
-                <p>${event.summary}</p>
-                <p><strong>Inträffade:</strong> ${event.datetime}</p>
-            </div>`;
-            sidebar.append(eventItem);
+            var newsItem = `<li class="list-group-item">${event.name}</li>`;
+            latestNews.append(newsItem);
+        });
+
+        events.forEach(function (event) {
+            var eventRow = `<tr>
+                <td>${event.name}</td>
+                <td>${event.summary}</td>
+            </tr>`;
+            eventTable.append(eventRow);
         });
     }
 
