@@ -17,19 +17,18 @@
     <div class="container-fluid">
         <header class="d-flex justify-content-between align-items-center py-3 mb-4 border-bottom">
             <div class="d-flex align-items-center mx-auto">
-                <!-- Image source from Pictures/bild.png -->
                 <img src="~/Pictures/Bild.png" alt="Bild" style="height: 150px;" />
             </div>
         </header>
 
-        <main role="main" class="row">
-            <div class="col-md-3">
+        <main role="main" class="row flex-grow-1">
+            <div class="col-md-3 left-sidebar">
                 @RenderSection("LeftSidebar", required: false)
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 main-content">
                 @RenderBody()
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 right-sidebar">
                 @RenderSection("RightSidebar", required: false)
                 </div>
         </main>

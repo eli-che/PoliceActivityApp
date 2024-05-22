@@ -49,15 +49,16 @@ $(document).ready(function () {
             var coords = event.location.gps.split(',');
             var marker = L.marker([parseFloat(coords[0]), parseFloat(coords[1])]).addTo(map);
             marker.bindPopup(`<b>${event.name}</b><br>${event.summary}`);
+            marker.on('click', function () {
+                updateEventDetails(event);
+            });
         });
     }
 
     function updateSidebar(events) {
-        var sidebar = $('.right-sidebar');
         var sidebarDetails = $('#event-details');
         var latestNews = $('#latest-news');
         var eventTable = $('#event-table tbody');
-        sidebar.empty();
         sidebarDetails.empty();
         latestNews.empty();
         eventTable.empty();
@@ -77,7 +78,19 @@ $(document).ready(function () {
             </tr>`;
             eventTable.append(eventRow);
         });
+
+        //Lägg till första eventet i detaljerna
+        updateEventDetails(events[0]);
     }
+
+    function updateEventDetails(event) {
+        var sidebarDetails = $('#event-details');
+        sidebarDetails.empty();
+        sidebarDetails.append(`<h5>${event.name}</h5>`);
+        sidebarDetails.append(`<p><strong>Händelse:</strong> ${event.summary}</p>`);
+        sidebarDetails.append(`<p><strong>Länk:</strong> <a href="https://polisen.se${event.url}">https://polisen.se${event.url}</a</p>`);
+    }
+
 
     $('#allCategories').on('change', function () {
         var isChecked = $(this).is(':checked');
