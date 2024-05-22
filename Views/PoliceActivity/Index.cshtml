@@ -12,10 +12,158 @@
     </div>
     <div>
         <h5>Brottskategorier</h5>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="allCategories" checked>
-            <label class="form-check-label" for="allCategories">Markera alla</label>
-        </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="allCategories" checked onclick="toggleCheckboxes(this)">
+                <label class="form-check-label" for="allCategories">Markera alla</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="category1" checked onclick="toggleSubcategories(this, 'subcategory1')">
+                <label class="form-check-label" for="category1">Allmän ordning</label>
+                <div class="form-check subcategory subcategory1">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory1-1" checked>
+                    <label class="form-check-label" for="subcategory1-1">Larm Överfall</label>
+                </div>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="category2" checked>
+                <label class="form-check-label" for="category2">Fylleri/LOB</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="category3" checked onclick="toggleSubcategories(this, 'subcategory3')">
+                <label class="form-check-label" for="category3">Egendomsbrott</label>
+                <div class="form-check subcategory subcategory3">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory3-1" checked>
+                    <label class="form-check-label" for="subcategory3-1">Stöld</label>
+                </div>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="category4" checked onclick="toggleSubcategories(this, 'subcategory4')">
+                <label class="form-check-label" for="category4">Trafikbrott</label>
+                <div class="form-check subcategory subcategory4">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory4-1" checked>
+                    <label class="form-check-label" for="subcategory4-1">Olovlig körning</label>
+                </div>
+                <div class="form-check subcategory subcategory4">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory4-2" checked>
+                    <label class="form-check-label" for="subcategory4-2">Rattfylleri</label>
+                </div>
+                <div class="form-check subcategory subcategory4">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory4-3" checked>
+                    <label class="form-check-label" for="subcategory4-3">Trafikbrott</label>
+                </div>
+                <div class="form-check subcategory subcategory4">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory4-4" checked>
+                    <label class="form-check-label" for="subcategory4-4">Trafikkontroll</label>
+                </div>
+                <div class="form-check subcategory subcategory4">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory4-5" checked>
+                    <label class="form-check-label" for="subcategory4-5">Trafikolycka</label>
+                </div>
+                <div class="form-check subcategory subcategory4">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory4-6" checked>
+                    <label class="form-check-label" for="subcategory4-6">Trafikolycka, personskada</label>
+                </div>
+                <div class="form-check subcategory subcategory4">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory4-7" checked>
+                    <label class="form-check-label" for="subcategory4-7">Trafikolycka, smitning från</label>
+                </div>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="category5" checked onclick="toggleSubcategories(this, 'subcategory5')">
+                <label class="form-check-label" for="category5">Våldsbrott</label>
+                <div class="form-check subcategory subcategory5">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory5-1" checked>
+                    <label class="form-check-label" for="subcategory5-1">Misshandel</label>
+                </div>
+                <div class="form-check subcategory subcategory5">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory5-2" checked>
+                    <label class="form-check-label" for="subcategory5-2">Misshandel, grov</label>
+                </div>
+                <div class="form-check subcategory subcategory5">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory5-3" checked>
+                    <label class="form-check-label" for="subcategory5-3">Mord/dråp, försök</label>
+                </div>
+                <div class="form-check subcategory subcategory5">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory5-4" checked>
+                    <label class="form-check-label" for="subcategory5-4">Ofredande/förargelse</label>
+                </div>
+                <div class="form-check subcategory subcategory5">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory5-5" checked>
+                    <label class="form-check-label" for="subcategory5-5">Rån</label>
+                </div>
+                <div class="form-check subcategory subcategory5">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory5-6" checked>
+                    <label class="form-check-label" for="subcategory5-6">Våld/hot mot tjänsteman</label>
+                </div>
+                <div class="form-check subcategory subcategory5">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory5-7" checked>
+                    <label class="form-check-label" for="subcategory5-7">Våldtäkt</label>
+                </div>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="category6" checked onclick="toggleSubcategories(this, 'subcategory6')">
+                <label class="form-check-label" for="category6">Övrigt</label>
+                <div class="form-check subcategory subcategory6">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory6-1" checked>
+                    <label class="form-check-label" for="subcategory6-1">Anträffad död</label>
+                </div>
+                <div class="form-check subcategory subcategory6">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory6-2" checked>
+                    <label class="form-check-label" for="subcategory6-2">Arbetsplatsolycka</label>
+                </div>
+                <div class="form-check subcategory subcategory6">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory6-3" checked>
+                    <label class="form-check-label" for="subcategory6-3">Brand</label>
+                </div>
+                <div class="form-check subcategory subcategory6">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory6-4" checked>
+                    <label class="form-check-label" for="subcategory6-4">Djur</label>
+                </div>
+                <div class="form-check subcategory subcategory6">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory6-5" checked>
+                    <label class="form-check-label" for="subcategory6-5">Försvunnen person</label>
+                </div>
+                <div class="form-check subcategory subcategory6">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory6-6" checked>
+                    <label class="form-check-label" for="subcategory6-6">Knivlagen</label>
+                </div>
+                <div class="form-check subcategory subcategory6">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory6-7" checked>
+                    <label class="form-check-label" for="subcategory6-7">Kontroll person/fordon</label>
+                </div>
+                <div class="form-check subcategory subcategory6">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory6-8" checked>
+                    <label class="form-check-label" for="subcategory6-8">Polisinsats/kommendering</label>
+                </div>
+                <div class="form-check subcategory subcategory6">
+                    <input class="form-check-input" type="checkbox" value="" id="subcategory6-9" checked>
+                    <label class="form-check-label" for="subcategory6-9">Sjukdom/olycksfall</label>
+                </div>
+            </div>
+
+            <script>
+                function toggleCheckboxes(source) {
+                    let checkboxes = document.querySelectorAll('.form-check-input');
+                    for (let i = 0; i < checkboxes.length; i++) {
+                        if (checkboxes[i] != source) {
+                            checkboxes[i].checked = source.checked;
+                        }
+                    }
+                }
+
+                function toggleSubcategories(source, subcategoryClass) {
+                    let checkboxes = document.querySelectorAll('.' + subcategoryClass + ' .form-check-input');
+                    for (let i = 0; i < checkboxes.length; i++) {
+                        checkboxes[i].checked = source.checked;
+                    }
+                }
+            </script>
     </div>
 </div>
 }
