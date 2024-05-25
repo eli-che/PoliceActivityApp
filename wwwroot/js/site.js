@@ -35,7 +35,10 @@ $(document).ready(function () {
     }
 
     function updateMap(events) {
-        //Clear map data
+        let selectedCategories = getSelectedCategories().split(';').map(decodeURIComponent);
+        console.log('Selected categories:', selectedCategories);
+
+        // Clear map data
         if (map) {
             // Clear the existing map if it already exists
             map.remove();
@@ -45,27 +48,26 @@ $(document).ready(function () {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-
-
         // Car crash png test
         let customIcon = L.icon({
-            iconUrl: "/Pictures/car-crash.png",  
+            iconUrl: "/Pictures/car-crash.png",
             iconSize: [40, 40]
         });
 
-        //icon url should be car-crash.png inside pictures folder
-
-
+        // icon url should be car-crash.png inside pictures folder
 
         events.forEach(function (event) {
+            if (!selectedCategories.includes(event.type)) {
+                return;
+            }
+
             var coords = event.location.gps.split(',');
-            //if event is "Trafikolycka" then use "car-crash.png" as icon"
+            // if event is "Trafikolycka" then use "car-crash.png" as icon
             if (event.type === "Trafikolycka") {
                 var marker = L.marker([parseFloat(coords[0]), parseFloat(coords[1])], {
                     icon: customIcon
                 }).addTo(map);
-            }
-            else {
+            } else {
                 var marker = L.marker([parseFloat(coords[0]), parseFloat(coords[1])]).addTo(map);
             }
             marker.bindPopup(`<b>${event.name}</b><br>${event.summary}`);
@@ -76,6 +78,7 @@ $(document).ready(function () {
     }
 
     function updateSidebar(events) {
+        let selectedCategories = getSelectedCategories().split(';').map(decodeURIComponent);
         var sidebarDetails = $('#event-details');
         var latestNews = $('#latest-news');
         var eventTable = $('#event-table tbody');
@@ -92,12 +95,19 @@ $(document).ready(function () {
         });
 
         events.forEach(function (event) {
-            var eventRow = `<tr>
-                <td>${event.name}</td>
-                <td>${event.summary}</td>
-            </tr>`;
+            if (!selectedCategories.includes(event.type)) {
+                return;
+            }
+            var eventUrl = event.url.startsWith('/') ? event.url : '/' + event.url;
+            var eventRow = `
+        <tr>
+            <td>${event.name}</td>
+            <td><a href="https://polisen.se${eventUrl}">${event.summary}</a></td>
+        </tr>`;
             eventTable.append(eventRow);
         });
+
+
 
         //Lägg till första eventet i detaljerna
         updateEventDetails(events[0]);
@@ -111,10 +121,30 @@ $(document).ready(function () {
         sidebarDetails.append(`<p><strong>Länk:</strong> <a href="https://polisen.se${event.url}">https://polisen.se${event.url}</a</p>`);
     }
 
-
     $('#allCategories').on('change', function () {
         var isChecked = $(this).is(':checked');
         $('.form-check-input').prop('checked', isChecked);
-        // Kategori filter logik
+        var selectedDate = $('#datepicker').val();
+        fetchEventsByDate(selectedDate);
     });
+
+    $('.form-check-input').on('change', function () {
+        if (!$(this).is('#allCategories')) {
+            $('#allCategories').prop('checked', false);
+        }
+        var selectedDate = $('#datepicker').val();
+        fetchEventsByDate(selectedDate);
+    });
+
+    function getSelectedCategories() {
+        let selectedCategories = [];
+        let checkboxes = document.querySelectorAll('.form-check-input');
+        checkboxes.forEach(function (checkbox) {
+            if (checkbox.checked && !checkbox.id.startsWith('allCategories')) {
+                let label = document.querySelector(`label[for=${checkbox.id}]`).innerText;
+                selectedCategories.push(encodeURIComponent(label));
+            }
+        });
+        return selectedCategories.join(';');
+    }
 });
