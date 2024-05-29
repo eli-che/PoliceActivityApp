@@ -1,0 +1,178 @@
+﻿@model List<PoliceActivityApp.Models.PoliceActivity>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section LeftSidebar {
+    <div class="sidebar-content">
+    <div>
+        <h5>Län</h5>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="allStates" checked onclick="toggleCheckboxes(this)">
+                <label class="form-check-label" for="allStates">Markera alla</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="skane" checked>
+                <label class="form-check-label" for="skane">Skåne</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="norrbotten" checked>
+                <label class="form-check-label" for="norrbotten">Norrbotten</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="vasterbotten" checked>
+                <label class="form-check-label" for="vasterbotten">Västerbotten</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="jonkopings-lan" checked>
+                <label class="form-check-label" for="jonkopings-lan">Jönköpings län</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="uppsala-lan" checked>
+                <label class="form-check-label" for="uppsala-lan">Uppsala län</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="gavleborg" checked>
+                <label class="form-check-label" for="gavleborg">Gävleborg</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="varmland" checked>
+                <label class="form-check-label" for="varmland">Värmland</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="jamtland" checked>
+                <label class="form-check-label" for="jamtland">Jämtland</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="ostergotland" checked>
+                <label class="form-check-label" for="ostergotland">Östergötland</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="vastra-gotaland" checked>
+                <label class="form-check-label" for="vastra-gotaland">Västra Götaland</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="kronoberg" checked>
+                <label class="form-check-label" for="kronoberg">Kronoberg</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="blekinge" checked>
+                <label class="form-check-label" for="blekinge">Blekinge</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="stockholms-lan" checked>
+                <label class="form-check-label" for="stockholms-lan">Stockholms län</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="gotland" checked>
+                <label class="form-check-label" for="gotland">Gotland</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="halland" checked>
+                <label class="form-check-label" for="halland">Halland</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="dalarna" checked>
+                <label class="form-check-label" for="dalarna">Dalarna</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="vastmanland" checked>
+                <label class="form-check-label" for="vastmanland">Västmanland</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="sodermanland" checked>
+                <label class="form-check-label" for="sodermanland">Södermanland</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="kalmar-lan" checked>
+                <label class="form-check-label" for="kalmar-lan">Kalmar län</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="orebro-lan" checked>
+                <label class="form-check-label" for="orebro-lan">Örebro län</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="vasternorrland" checked>
+                <label class="form-check-label" for="vasternorrland">Västernorrland</label>
+            </div>
+           
+
+         
+
+            <script>
+                function toggleCheckboxes(source) {
+                    let checkboxes = document.querySelectorAll('.form-check-input');
+                    for (let i = 0; i < checkboxes.length; i++) {
+                        if (checkboxes[i] != source) {
+                            checkboxes[i].checked = source.checked;
+                        }
+                    }
+                }
+
+                function toggleSubcategories(source, subcategoryClass) {
+                    let checkboxes = document.querySelectorAll('.' + subcategoryClass + ' .form-check-input');
+                    for (let i = 0; i < checkboxes.length; i++) {
+                        checkboxes[i].checked = source.checked;
+                    }
+                }
+            </script>
+    </div>
+</div>
+}
+
+<div id="map" class="map-container"></div>
+
+@section RightSidebar {
+    <div class="sidebar-content">
+        <h5 style ="font-weight: bold">Stations Information</h5>
+    <div id ="event-details">
+        <h5>Placeholder</h5>
+        <p>Placeholder</p>
+        <p>Placeholder</p>
+    </div>
+    <div>
+        <h5>HÄNDELSE LISTA</h5>
+        <ul class="list-group">
+        </ul>
+    </div>
+
+
+    <table class="table" id="event-table">
+        <thead>
+            <tr>
+                <th>Station</th>
+                <th>Station</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+}
+
+
+

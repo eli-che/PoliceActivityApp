@@ -12,6 +12,7 @@ $(document).ready(function () {
     $('#datepicker').val(today);
 
     fetchEventsByDate(today);
+    fetchPoliceStations();
 
     // Attach the change event listener to the date picker
     $('#datepicker').on('change', function () {
@@ -21,6 +22,17 @@ $(document).ready(function () {
             fetchEventsByDate(selectedDate);
         }
     });
+
+    function fetchPoliceStations() {
+        var url = '/Stationer/GetPoliceStations';
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Data received:', data);
+                updateMap(data);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }
 
     function fetchEventsByDate(date) {
         var url = `/PoliceActivity/GetEventsByDate?date=${date}`;
