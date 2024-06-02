@@ -12,6 +12,8 @@ $(document).ready(function () {
     $('#datepicker').val(today);
 
     fetchEventsByDate(today);
+    //if web page url is /stationer then fetch police stations
+    if (window.location.pathname === "/stationer")
     fetchPoliceStations();
 
     // Attach the change event listener to the date picker
@@ -40,13 +42,13 @@ $(document).ready(function () {
             .then(response => response.json())
             .then(data => {
                 console.log('Data received:', data);
-                updateMap(data);
-                updateSidebar(data);
+                updateEventMap(data);
+                updateEventSidebar(data);
             })
             .catch(error => console.error('Error fetching data:', error));
     }
 
-    function updateMap(events) {
+    function updateEventMap(events) {
         let selectedCategories = getSelectedCategories().split(';').map(decodeURIComponent);
         console.log('Selected categories:', selectedCategories);
 
@@ -89,7 +91,7 @@ $(document).ready(function () {
         });
     }
 
-    function updateSidebar(events) {
+    function updateEventSidebar(events) {
         let selectedCategories = getSelectedCategories().split(';').map(decodeURIComponent);
         var sidebarDetails = $('#event-details');
         var latestNews = $('#latest-news');
