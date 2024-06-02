@@ -118,24 +118,17 @@
                 <input class="form-check-input policestation-checkbox" type="checkbox" value="" id="vasternorrland" checked>
                 <label class="form-check-label" for="vasternorrland">Västernorrland</label>
             </div>
-           
 
-         
+
+
 
             <script>
                 function toggleCheckboxes(source) {
-                    let checkboxes = document.querySelectorAll('.form-check-input policestation-checkbox');
+                    let checkboxes = document.querySelectorAll('.form-check-input.policestation-checkbox');
                     for (let i = 0; i < checkboxes.length; i++) {
-                        if (checkboxes[i] != source) {
+                        if (checkboxes[i] !== source) {
                             checkboxes[i].checked = source.checked;
                         }
-                    }
-                }
-
-                function toggleSubcategories(source, subcategoryClass) {
-                    let checkboxes = document.querySelectorAll('.' + subcategoryClass + ' .form-check-input policestation-checkbox');
-                    for (let i = 0; i < checkboxes.length; i++) {
-                        checkboxes[i].checked = source.checked;
                     }
                 }
             </script>
@@ -146,32 +139,25 @@
 <div id="map" class="map-container"></div>
 
 @section RightSidebar {
-    <div class="sidebar-content">
-        <h5 style ="font-weight: bold">Stations Information</h5>
-    <div id ="event-details">
-        <h5>Placeholder</h5>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
+    <div class="sidebarstation-content">
+        <h5 style="font-weight: bold">STATIONS INFORMATION</h5>
+        <div id="station-details">
+            <h5>Placeholder</h5>
+            <p>Placeholder</p>
+            <p>Placeholder</p>
+        </div>
+
+        <table class="table" id="station-table">
+            <thead>
+                <tr>
+                    <th>Station</th>
+                    <th>Tjänster</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
-    <div>
-        <h5>HÄNDELSE LISTA</h5>
-        <ul class="list-group">
-        </ul>
-    </div>
-
-
-    <table class="table" id="event-table">
-        <thead>
-            <tr>
-                <th>Station</th>
-                <th>Station</th>
-            </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table>
-</div>
 }
 
 
